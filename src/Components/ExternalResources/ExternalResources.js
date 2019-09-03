@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Query, Mutation } from "react-apollo";
+import { Link, Route } from "react-router-dom";
 
-import ExternalResource from "./ExternalResource";
+import ExternalResourcePage from "./ExternalResourcePage";
 import getExternalResources from "../../Apollo/Queries/getExternalResources";
-import createExternalResource from "../../Apollo/Mutations/createExternalResource";
 import AddResourceForm from "./AddResourceForm";
 
 export default class ExternalResources extends Component {
@@ -38,14 +38,19 @@ export default class ExternalResources extends Component {
         )}
         <Query query={getExternalResources}>
           {/* TODO: add error handling */}
-          {({ data, loading, refetch }) => {
+          {({ data, loading }) => {
             return (
               <div>
                 {loading && "Loading..."}
                 <ul>
                   {data && data.externalResources
                     ? data.externalResources.map(resource => (
-                        <ExternalResource {...resource} key={resource.id} />
+                        <li key={resource.id}>
+                          {/* TODO: replace with a smarter way to add/validate the http prefix */}
+                          <Link to={`${this.props.match.url}/${resource.id}`}>
+                            {resource.title}
+                          </Link>
+                        </li>
                       ))
                     : "No results"}
                 </ul>

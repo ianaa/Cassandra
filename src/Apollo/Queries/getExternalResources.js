@@ -5,9 +5,10 @@ const getExternalResources = gql`
     externalResources {
       id
       title
-      description
-      linkURL
       logoURL
+      categories {
+        category
+      }
       votes {
         positive
       }

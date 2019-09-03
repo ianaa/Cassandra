@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "../Home Page/Home";
 import Courses from "../Courses/Courses";
 import ExternalRecources from "../ExternalResources/ExternalResources";
+import ExternalResourcePage from "../ExternalResources/ExternalResourcePage";
 import About from "../About Page/About";
 
 const Routes = () => (
@@ -12,8 +13,9 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/courses" component={Courses} />
-      <Route path="/resources" component={ExternalRecources} />
       <Route path="/about" component={About} />
+      <Route path="/resources/:id" component={ExternalResourcePage} />
+      <Route path="/resources" component={ExternalRecources} />
     </Switch>
   </BrowserRouter>
 );
